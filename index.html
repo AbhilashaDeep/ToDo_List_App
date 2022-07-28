@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>TODO List App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="input">
+        <img src="bars-icon.svg" alt="icon" />
+        <input type="text" class="txtbox" placeholder="Add a task" />
+      </div>
+      <div class="notcomp">
+        <h3>Not Completed</h3>
+        <div class="task">
+          task
+          <i class="fas fa-trash-alt"></i>
+          <i class="fas fa-check"></i>
+        </div>
+      </div>
+      <div class="comp">
+        <h3>Completed</h3>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(".txtbox").on("keyup", function (e) {
+        //13 means ente button
+        if (e.keyCode == 13 && $(".txtbox").val() != "") {
+          var task = $("<div class= 'task' ></div>").text($(".txtbox").val());
+          var del = $("<i class='fas fa-trash-alt'></i>").click(function () {
+            var p = $(this).parent();
+            p.fadeOut(function () {
+              p.remove();
+            });
+          });
+          var check = $("<i class= 'fas fa-check' ><i/>").click(function () {
+            var p = $(this).parent();
+            p.fadeOut(function () {
+              $(".comp").append(p);
+              p.fadeIn();
+            });
+            $(this).remove();
+          });
+
+          task.append(del, check);
+          $(".notcomp").append(task);
+          //cleat the input
+          $(".txtbox").val("");
+        }
+      });
+    </script>
+  </body>
+</html>
